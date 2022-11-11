@@ -1,7 +1,7 @@
 #!/usr/bin/php
 <?php
 
-$output_file = "Tour_ATW2021.kml";
+$output_file = "Tour-ATW2021.kml";
 
 $placemarks = "";
 
@@ -27,7 +27,7 @@ $footer = <<<HTML
 </kml>
 HTML;
 
-$directories = glob("*");
+$directories = glob("*_*");
 foreach ($directories as $data_dir) {
     print "Processing $data_dir...\n";
     $files = glob($data_dir."/data_*.txt");
