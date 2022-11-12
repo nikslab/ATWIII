@@ -5,6 +5,7 @@ $directories = glob("*_*", GLOB_ONLYDIR);
 
 $TOTAL_KML_DISTANCE = 0;
 $COUNT_FLIGHTS = 0;
+$TOTAL_MINUTES = 0;
 
 foreach ($directories as $data_dir) {
 
@@ -75,20 +76,27 @@ if ($handle) {
     // error opening the file.
 } 
 
+$mins = round(($seconds-$start_seconds)/60,0);
+
 /*
 print "Distance: $distance_km km\n";
 print "KML distance: $total_dist\n";
 $t = gmdate("H:i:s", round($seconds-$start_seconds,0));
-$mins = round(($seconds-$start_seconds)/60,0);
 print "Flight time: $t ($mins mins)\n\n\n";
 */
 
 $TOTAL_KML_DISTANCE += $total_dist;
+$TOTAL_MINUTES += $mins;
 
 }
 
+$TOTAL_KML_DISTANCE = round($TOTAL_KML_DISTANCE, 0);
+$TOTAL_FLIGHT_TIME = round($TOTAL_MINUTES / 60, 0);
+
 print "TOTAL FLIGHTS: $COUNT_FLIGHTS\n";
-print "TOTAL KML DISTANCE: $TOTAL_KML_DISTANCE\n";
+print "TOTAL KML DISTANCE: $TOTAL_KML_DISTANCE km\n";
+print "TOTAL FLIGHT TIME: $TOTAL_FLIGHT_TIME hours\n";
+
 
 function dist($lat1, $lon1, $alt1, $lat2, $lon2, $alt2) {
 
